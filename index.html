@@ -37,11 +37,11 @@
     const dateInput = document.getElementById('date-input');
     const rateCell = document.getElementById('rate');
     const rateDateCell = document.getElementById('rate-date');
-    const paramsDate = location.pathname.split('/').slice(2);
+    const queryDate = location.search.split('=').slice(1);
 
-    if (paramsDate) {
-        date = paramsDate;
-        dateInput.value = paramsDate;
+    if (queryDate) {
+        date = queryDate;
+        dateInput.value = queryDate;
         fetchRate();
     }
 
