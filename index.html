@@ -39,9 +39,9 @@
     const rateDateCell = document.getElementById('rate-date');
     const queryDate = location.search.split('=').slice(1);
 
-    if (queryDate) {
-        date = queryDate;
-        dateInput.value = queryDate;
+    if (queryDate.length) {
+        date = queryDate[0];
+        dateInput.value = queryDate[0];
         fetchRate();
     }
 
