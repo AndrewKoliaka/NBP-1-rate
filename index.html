@@ -37,7 +37,7 @@
     const dateInput = document.getElementById('date-input');
     const rateCell = document.getElementById('rate');
     const rateDateCell = document.getElementById('rate-date');
-    const paramsDate = location.pathname.slice(1);
+    const paramsDate = location.pathname.split('/').slice(2);
 
     if (paramsDate) {
         date = paramsDate;
