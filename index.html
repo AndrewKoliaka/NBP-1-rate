@@ -27,6 +27,8 @@
             <td id="rate">-</td>
         </tr>
     </table>
+
+    <p id="message"></p>
 </div>
 <script>
     let date;
@@ -37,6 +39,7 @@
     const dateInput = document.getElementById('date-input');
     const rateCell = document.getElementById('rate');
     const rateDateCell = document.getElementById('rate-date');
+    const message = document.getElementById('message');
     const queryDate = location.search.split('=').slice(1);
 
     if (queryDate.length) {
@@ -65,9 +68,11 @@
 
                 const data = await response.json();
 
-                rateCell.innerText = data.rates[0].mid;
-                rateDateCell.innerText = formattedDate;
                 rate = data.rates[0].mid;
+                rateCell.innerText = rate;
+                rateDateCell.innerText = formattedDate;
+
+                await copyToClipboard(rate);
 
                 break;
             } catch (e) {
@@ -77,12 +82,18 @@
         }
     }
 
+    async function copyToClipboard(text) {
+        await navigator.clipboard.writeText(text);
+        message.textContent = 'Copied to clipboard!';
+    }
+
     function onDateChange(event) {
         date = event.target.value;
     }
 
     function onGetRateClick() {
         rate = 0;
+        message.textContent = '';
         fetchRate();
     }
 
